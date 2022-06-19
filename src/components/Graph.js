@@ -34,17 +34,15 @@ const Graph = () => {
   }
 
   const handleElementChange = (event) => {
-    if (typeof event.currentTarget.value === "number") {
-      setNumberOfElements(event.currentTarget.value);
-    }
+    if (isNaN(event.target.value)) return;
+    setNumberOfElements(event.currentTarget.value);
   };
 
   const handleSpeedChange = (event) => {
-    if (typeof event.currentTarget.value === "number") {
-      setSpeed(event.currentTarget.value);
-    }
+    if (isNaN(event.target.value)) return;
+    setSpeed(event.currentTarget.value);
   };
-  
+
   useEffect(() => {
     updateArray(numberOfElements);
   }, [numberOfElements]);
