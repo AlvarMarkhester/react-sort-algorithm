@@ -3,3 +3,5 @@
 Super simple bubble sort
 
 Start with "npm start"
+
+TODO: Do a bit of UI work and possibly implement other sorting algos.
