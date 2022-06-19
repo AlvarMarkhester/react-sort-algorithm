@@ -34,12 +34,17 @@ const Graph = () => {
   }
 
   const handleElementChange = (event) => {
-    setNumberOfElements(event.currentTarget.value);
+    if (typeof event.currentTarget.value === "number") {
+      setNumberOfElements(event.currentTarget.value);
+    }
   };
+
   const handleSpeedChange = (event) => {
-    if (typeof event.currentTarget.value === "number");
-    setSpeed(event.currentTarget.value);
+    if (typeof event.currentTarget.value === "number") {
+      setSpeed(event.currentTarget.value);
+    }
   };
+  
   useEffect(() => {
     updateArray(numberOfElements);
   }, [numberOfElements]);
