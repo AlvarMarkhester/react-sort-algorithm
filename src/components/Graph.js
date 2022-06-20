@@ -1,61 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SortInputs from "./SortInputs";
 import ArrayVisualizer from "./ArrayVisualizer";
+import useArraySetup from "./Helpers/useArraySetup";
+import useBubbleSort from "./Helpers/useBubbleSort";
 
 const Graph = () => {
-  const [numberOfElements, setNumberOfElements] = useState(50);
+  const [numberOfElements, setNumberOfElements] = useState(
+    Math.floor(Math.random() * 100) + 20
+  );
   const [speed, setSpeed] = useState(100);
+  const [elementArray, setElementArray] = useArraySetup(numberOfElements);
+  const [bubbleSorting, setBubbleSorting] = useBubbleSort(
+    elementArray,
+    setElementArray,
+    speed
+  );
 
-  const [elementArray, setElementArray] = useState([]);
-
-  function updateArray(elements) {
-    var array = [];
-    for (var i = 0; i < elements; i++) {
-      array.push({ value: Math.floor(Math.random() * 500), id: i });
+  const toggleSort = (type) => {
+    switch (type) {
+      case "bubble":
+        setBubbleSorting(bubbleSorting => !bubbleSorting)
+        break;
+      case "merge":
+        console.log('merge')
+        break;
+      case "quick":
+        console.log('quick')
+        break;
+      default:
+        throw new Error();
     }
-    setElementArray(array);
-  }
-
-  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
-
-  async function bubbleSort() {
-    var tempArr = [...elementArray];
-    for (var i = 0; i < tempArr.length; i++) {
-      for (var j = 0; j < tempArr.length - i - 1; j++) {
-        if (tempArr[j].value > tempArr[j + 1].value) {
-          var b = tempArr[j];
-          tempArr[j] = tempArr[j + 1];
-          tempArr[j + 1] = b;
-          setElementArray([...tempArr]);
-          await timer(speed);
-        }
-      }
-    }
-  }
-
-  const handleElementChange = (event) => {
-    if (isNaN(event.target.value)) return;
-    setNumberOfElements(event.currentTarget.value);
   };
-
-  const handleSpeedChange = (event) => {
-    if (isNaN(event.target.value)) return;
-    setSpeed(event.currentTarget.value);
-  };
-
-  useEffect(() => {
-    updateArray(numberOfElements);
-  }, [numberOfElements]);
 
   return (
     <div className="graph-container">
       <div className="graph-div">
         <SortInputs
           numberOfElements={numberOfElements}
-          handleElementChange={handleElementChange}
+          setNumberOfElements={setNumberOfElements}
           speed={speed}
-          handleSpeedChange={handleSpeedChange}
-          bubbleSort={bubbleSort}
+          setSpeed={setSpeed}
+          toggleSort={toggleSort}
         />
         <ArrayVisualizer elementArray={elementArray} />
       </div>
