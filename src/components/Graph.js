@@ -3,12 +3,13 @@ import SortInputs from "./SortInputs";
 import ArrayVisualizer from "./ArrayVisualizer";
 import useArraySetup from "./Helpers/useArraySetup";
 import useBubbleSort from "./Helpers/useBubbleSort";
+import { mergeSort } from "./Helpers/mergeSort";
 
 const Graph = () => {
   const [numberOfElements, setNumberOfElements] = useState(
     Math.floor(Math.random() * 100) + 20
   );
-  const [speed, setSpeed] = useState(100);
+  const [speed, setSpeed] = useState(50);
   const [elementArray, setElementArray] = useArraySetup(numberOfElements);
   const [bubbleSorting, setBubbleSorting] = useBubbleSort(
     elementArray,
@@ -19,10 +20,10 @@ const Graph = () => {
   const toggleSort = (type) => {
     switch (type) {
       case "bubble":
-        setBubbleSorting(bubbleSorting => !bubbleSorting)
+        setBubbleSorting(() => !bubbleSorting)
         break;
       case "merge":
-        console.log('merge')
+        mergeSort(elementArray, setElementArray)
         break;
       case "quick":
         console.log('quick')
