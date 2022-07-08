@@ -1,8 +1,3 @@
-// Array[e] = {value: x, id: id}
-// [7,4,2,3,2,1]
-// [2,4,4] [1,2,3]
-// [1, 2, 2,3, 4,4 ]
-// [4,7] [2] [3] [2,1]
 
 const mergeSort = (stateArr, setArr) => {
     if (stateArr.length > 1) {
@@ -21,32 +16,35 @@ const sort = (arr, start, end, setArr) => {
 };
 
 const merge = (arr, start, mid, end, setArr) => {
-    let tempArr = [];
+    let temparr = []
     let L = start;
     let R = mid + 1;
     let M = 0;
 
     while (L <= mid && R <= end) {
         if (arr[L].value <= arr[R].value) {
-            tempArr[M] = arr[L];
+            temparr[M] = arr[L];
             L++;
         } else {
-            tempArr[M] = arr[R];
+            temparr[M] = arr[R];
             R++;
         }
         M++;
     }
 
     while (L <= mid) {
-        tempArr[M] = arr[L];
+        temparr[M] = arr[L];
+        setArr(arr)
         M++;
         L++;
     }
     while (R <= end) {
-        tempArr[M] = arr[R];
+        temparr[M] = arr[R];
+        setArr(arr)
         M++;
         R++;
     }
+    console.log(temparr)
 };
 
 export default mergeSort;
