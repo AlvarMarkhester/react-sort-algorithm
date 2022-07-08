@@ -17,6 +17,10 @@ const SortInputs = (props) => {
     setSortMethod(event.currentTarget.value)
   }
 
+  const startSort = () => {
+    props.toggleSort(sortMethod)
+  }
+
   const handleReset = () => {
     props.setNumberOfElements(Math.floor(Math.random() * 100) + 20);
   };
@@ -36,7 +40,7 @@ const SortInputs = (props) => {
         <option value={'merge'}>Merge Sort</option>
         <option value={'quick'}>Quick Sort</option>
       </select>
-      <button onClick={() => props.toggleSort(sortMethod)} style={{ marginTop: 10 }}>
+      <button onClick={startSort} style={{ marginTop: 10 }}>
         Sort
       </button>
       <button onClick={handleReset} style={{ marginTop: 10 }}>
