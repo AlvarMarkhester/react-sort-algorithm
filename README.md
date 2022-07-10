@@ -1,7 +1,6 @@
-![image](https://user-images.githubusercontent.com/45149278/174502625-b401567b-8015-496d-8268-81f6a7eca86c.png)
+![image](https://user-images.githubusercontent.com/45149278/178165739-3f5c3e9b-fead-4183-ba50-e62d04630248.png)
 
-Super simple bubble sort
+React sorting algorithm.
+Bubble sort, merge sort (recursively), quick sort.
 
 Start with "npm start"
-
-TODO: Do a bit of UI work and possibly implement other sorting algos.
